@@ -1,4 +1,18 @@
-.side_bar
-  .user_name
-  .group_list
-  
+.side
+  .user
+    .user__box 
+      .user__box__name
+        masa
+      .user__box__icons
+        = link_to "#", class: "user__box__icons__new" do
+          = icon('far', 'edit')
+        = link_to "#", class: "user__box__icons__edit" do
+          = icon('fa', 'cog')
+  .group
+    .group__item
+      .group__name
+        techcamp
+      .group__message
+        まだメッセージがありません
+
+        
