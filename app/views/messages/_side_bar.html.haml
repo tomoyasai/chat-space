@@ -9,9 +9,11 @@
         = link_to edit_user_path(current_user), class: "user__box__icons__edit" do
           = icon('fa', 'cog')
   .group
-    .group__item
-      .group__item__name
-        techcamp
-      .group__item__message
-        まだメッセージがありません
+    - current_user.groups.each do |group|
+      .group__item
+        = link_to '#' do
+          .group__item__name
+            = group.name
+          .group__item__message
+            メッセージはまだありません
         
