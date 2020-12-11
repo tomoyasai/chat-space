@@ -4,7 +4,7 @@
       .user__box__name
         = current_user.name
       .user__box__icons
-        = link_to "#", class: "user__box__icons__new" do
+        = link_to "/groups/new", class: "user__box__icons__new" do
           = icon('far', 'edit')
         = link_to edit_user_path(current_user), class: "user__box__icons__edit" do
           = icon('fa', 'cog')
