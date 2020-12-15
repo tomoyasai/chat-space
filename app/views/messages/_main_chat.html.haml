@@ -2,16 +2,15 @@
   .group__info
     .group__info__left
       .group__info__left__name
-        test
+        = @group.name
       .group__info__left__member
         .group__info__left__member__title
-          Member:
+          Member:
         .group__info__left__member__name
-          masa
+          - @group.users.each do |user|
+            = user.name
        
     .group__info__right
-      = link_to 'Edit', '#'
-
 
   .message-list
     = render @messages
