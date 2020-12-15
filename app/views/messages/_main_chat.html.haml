@@ -11,6 +11,8 @@
             = user.name
        
     .group__info__right
+      = link_to 'Edit',  edit_group_path(@group)
+      -# = link_to 'Edit', "/groups/#{@group.id}/edit"
 
   .message-list
     = render @messages
