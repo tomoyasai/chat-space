@@ -1,4 +1,46 @@
 $(function(){
+  function buildHTML(message){
+    // 「もしメッセージに画像が含まれていたら」という条件式
+    if (message.image) {
+      let html = //メッセージに画像が含まれる場合のHTMLを作る
+        `<div class="message__box">
+          <div class="message__part">
+            <div class="message__part__name">
+              ${message.user_name}
+            </div>
+            <div class="message__part__time">
+              ${message.created_at}
+            </div>
+          </div>
+          <div class="message__box__word">
+            <p class="message__content">
+              ${message.content}
+            </p>
+            <img class="Message__image" src="${message.image}">
+          </div>
+        </div>`
+      return html;
+    } else {
+      let html = //メッセージに画像が含まれない場合のHTMLを作る
+      `<div class="message__box">
+        <div class="message__part">
+          <div class="message__part__name">
+            ${message.user_name}
+          </div>
+          <div class="message__part__time">
+            ${message.created_at}
+          </div>
+        </div>
+        <div class="message__box__word">
+          <p class="message__content">
+            ${message.content}
+          </p>
+        </div>
+      </div>`
+      return html;
+    };
+  }
+
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
@@ -10,6 +52,10 @@ $(function(){
       dataType: 'json',
       processData: false,
       contentType: false
+    })
+    .done(function(data){
+      console.log(data)
+      let html = buildHTML(data);
     })
   });
 });
