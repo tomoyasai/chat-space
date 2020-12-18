@@ -4,16 +4,16 @@ $(function(){
     if (message.image) {
       let html = //メッセージに画像が含まれる場合のHTMLを作る
         `<div class="message__box">
-          <div class="message__part">
-            <div class="message__part__name">
+          <div class="message__box__part">
+            <div class="message__box__part__name">
               ${message.user_name}
             </div>
-            <div class="message__part__time">
+            <div class="message__box__part__time">
               ${message.created_at}
             </div>
           </div>
           <div class="message__box__word">
-            <p class="message__content">
+            <p class="Message__content">
               ${message.content}
             </p>
             <img class="Message__image" src="${message.image}">
@@ -23,16 +23,16 @@ $(function(){
     } else {
       let html = //メッセージに画像が含まれない場合のHTMLを作る
       `<div class="message__box">
-        <div class="message__part">
-          <div class="message__part__name">
+        <div class="message__box__part">
+          <div class="message__box__part__name">
             ${message.user_name}
           </div>
-          <div class="message__part__time">
+          <div class="message__box__part__time">
             ${message.created_at}
           </div>
         </div>
         <div class="message__box__word">
-          <p class="message__content">
+          <p class="Message__content">
             ${message.content}
           </p>
         </div>
@@ -58,6 +58,10 @@ $(function(){
       $('.message-list').append(html);      
       $('form')[0].reset();
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight});
+      $('input').prop('disabled', false);
     })
+    .fail(function() {
+      alert("メッセージ送信に失敗しました");
+    });
   });
 });
