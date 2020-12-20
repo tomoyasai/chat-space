@@ -1,9 +1,8 @@
 $(function(){
   function buildHTML(message){
-    // 「もしメッセージに画像が含まれていたら」という条件式
     if (message.image) {
       let html = //メッセージに画像が含まれる場合のHTMLを作る
-        `<div class="message__box">
+        `<div class="message__box" data-message-id=${message.id}>
           <div class="message__box__part">
             <div class="message__box__part__name">
               ${message.user_name}
@@ -22,7 +21,7 @@ $(function(){
       return html;
     } else {
       let html = //メッセージに画像が含まれない場合のHTMLを作る
-      `<div class="message__box">
+      `<div class="message__box" data-message-id=${message.id}>
         <div class="message__box__part">
           <div class="message__box__part__name">
             ${message.user_name}
@@ -58,10 +57,11 @@ $(function(){
       $('.message-list').append(html);      
       $('form')[0].reset();
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight});
-      $('input').prop('disabled', false);
+      $('.submit-btn').prop('disabled', false);
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
+      $('.submit-btn').prop('disabled', false);
     });
   });
 });
